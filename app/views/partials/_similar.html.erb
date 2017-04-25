@@ -1,0 +1,17 @@
+<table id="similar-table">
+  <thead> Similar Items </thead>
+  <tr>
+    <th> Name </th>
+    <th> Price </th>
+  </tr>
+
+  <tbody>
+    <% items.each do |item| %>
+      <tr>
+        <td> <%= item.name %> </td>
+        <td> <%= number_to_currency(item.current_price) %> </td>
+      </tr>
+    <% end %>
+  </tbody> 
+</table>
+  

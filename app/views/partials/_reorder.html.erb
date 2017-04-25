@@ -1,0 +1,18 @@
+<table>
+  <thead> Dashboard </thead>
+  <tr>
+    <th> Reorder List </th>
+    <th> Inventory </th>
+    <th> Reorder Level </th>
+  </tr>
+
+  <tbody> 
+    <% @items_to_reorder.each do |item| %>
+      <tr>
+        <td> <%= item.name %> </td>
+        <td> <%= item.inventory_level %> </td>
+        <td> <%= item.reorder_level %> </td>
+      </tr>
+    <% end %>
+  </tbody> 
+</table>

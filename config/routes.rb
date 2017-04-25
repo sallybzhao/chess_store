@@ -4,6 +4,17 @@ Rails.application.routes.draw do
   resources :items
   resources :purchases
   resources :item_prices
+  resources :users
+  resources :orders
+  resources :order_items
+  resources :schools
+  resources :sessions
+
+  # authentication routes
+  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  # get 'signup' => 'users#new', :as => :signup
+  # get 'login' => 'sessions#new', :as => :login
+  # get 'logout' => 'sessions#destroy', :as => :logout
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home

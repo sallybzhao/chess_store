@@ -1,0 +1,18 @@
+<table>
+  <thead> <%= category %> </thead>
+  <tr>
+    <th> Name </th>
+    <th> Price </th>
+    <th> Inventory </th>
+  </tr>
+
+  <tbody>
+    <% for item in items.alphabetical %>
+      <tr>
+        <td> <%= link_to item.name, item_path(item), class: 'item-name' %> </td>
+        <td> <%= number_to_currency(item.current_price) %> </td>
+        <td> <%= item.inventory_level %> </td>
+      </tr>
+    <% end %>
+  </tbody> 
+</table>
