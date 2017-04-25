@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   # authentication routes
   get 'user/edit' => 'users#edit', :as => :edit_current_user
-  # get 'signup' => 'users#new', :as => :signup
-  # get 'login' => 'sessions#new', :as => :login
-  # get 'logout' => 'sessions#destroy', :as => :logout
+  get 'signup' => 'users#new', :as => :signup
+  get 'login' => 'sessions#new', :as => :login
+  get 'logout' => 'sessions#destroy', :as => :logout
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
