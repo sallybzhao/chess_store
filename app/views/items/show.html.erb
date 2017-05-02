@@ -3,8 +3,12 @@
     <%= render :partial => "item_details" %>
   </div>
   <div class="small-5 columns">
-    <%= render :partial => "price_history" unless @price_history.empty?%>
-    <%= render :partial => "similar_items" unless @similar_items.empty?%>
+    <% if logged_in? %>
+      <% if current_user.role == "admin" || current_user.role == "manager" %>
+        <%= render :partial => "price_history" unless @price_history.empty?%>
+      <% end %>
+      <%= render :partial => "similar_items" unless @similar_items.empty?%>
+    <% end %> 
   </div>
 </div>
 

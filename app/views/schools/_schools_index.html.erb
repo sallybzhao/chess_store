@@ -1,0 +1,32 @@
+<% if schools.empty? %>
+  <h4>No schools at this time.</h4>
+<% else %>
+<table id="ph-table">
+  <thead> Schools </thead>
+  <tr>
+    <th> Name </th>
+    <th> Street 1 </th>
+    <!-- <th> Street 2 </th> -->
+    <th> City </th>
+    <th> State </th>
+    <th> Zip </th>
+    <th> Min Grade </th>
+    <th> Max Grade </th>
+  </tr>
+
+  <tbody>
+    <% schools.active.alphabetical.each do |school| %>
+      <tr>
+        <td> <%= school.name %> </td>
+        <td> <%= school.street_1 %> </td>
+        <!-- <td> <%#= school.street_2 %> </td> -->
+        <td> <%= school.city %> </td>
+        <td> <%= school.state %> </td>
+        <td> <%= school.zip %> </td>
+        <td> <%= school.min_grade %> </td>
+        <td> <%= school.max_grade %> </td>
+      </tr>
+    <% end %>
+  </tbody> 
+</table>
+<% end %>

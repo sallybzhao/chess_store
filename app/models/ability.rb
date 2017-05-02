@@ -14,15 +14,16 @@ class Ability
       can :read, :all
       
       # they can create, edit, and read employee data
-      can [:create, :edit, :read], User do |u|  
+      can [:create, :edit, :update, :read], User do |u|  
         u.role == "shipper" || u.role == "manager"
       end
 
       # they can create, edit, and read items; can destroy, deactivate items
-      can [:create, :edit, :read, :destroy], Item 
+      can [:create, :edit, :update, :read, :destroy], Item 
       # deactivate
 
       # they can read full price history; create new prices
+      can :create, ItemPrice
       can [:read, :create], ItemPrice
 
       # they can add purchases

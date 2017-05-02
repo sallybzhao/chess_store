@@ -1,0 +1,47 @@
+<%= form_for @school do |f| %>
+    <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+      <ul>
+      <% @school.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :street_1 %><br />
+    <%= f.text_field :street_1 %>
+  </p>
+  <p>
+    <%= f.label :street_2 %> <br />
+    <%= f.text_field :street_2 %>
+  </p>
+  <p>
+    <%= f.label :city %> <br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %> <br />
+    <%= f.password_field :state %>
+  </p>
+  <p>
+    <%= f.label :zip %> <br />
+    <%= f.password_field :zip %>
+  </p>
+  <p>
+    <%= f.label :min_grade %> <br />
+    <%= f.password_field :min_grade %>
+  </p>
+  <p>
+    <%= f.label :max_grade %> <br />
+    <%= f.password_field :max_grade %>
+  </p>
+    
+  <p><%= f.submit (@school.new_record? ? "Create" : "Update") %></p>
+<% end %>

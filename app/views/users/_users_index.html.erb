@@ -1,0 +1,24 @@
+<% if users.empty? %>
+  <h4>No users at this time.</h4>
+<% else %>
+<table id="ph-table">
+  <thead> Users </thead>
+  <tr>
+    <th> Name </th>
+    <th> Email </th>
+    <th> Phone </th>
+    <th> Role </th>
+  </tr>
+
+  <tbody>
+    <% users.active.alphabetical.each do |user| %>
+      <tr>
+        <td> <%= link_to user.proper_name, user_path(user)  %> </td>
+        <td> <%= user.email %> </td>
+        <td> <%= user.phone %> </td>
+        <td> <%= user.role.capitalize %> </td>
+      </tr>
+    <% end %>
+  </tbody> 
+</table>
+<% end %>

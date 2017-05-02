@@ -1,0 +1,30 @@
+<h5>Not Shipped</h5>
+
+<% unless @not_shipped.nil? || @not_shipped.empty? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="150">Order ID</th>
+        <th width="150">Date</th>
+        <th width="150">School ID</th>
+        <th width="150">User ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @not_shipped.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.date %></td>
+          <td><%= order.school_id %></td>
+          <td><%= order.user_id %></td>
+        </tr>
+        <tr>
+          <!-- Show order items -->
+
+        <tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There are no items that need to be reorder at this time.</p>
+<% end %>

@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   authorize_resource
-  before_action :check_login
+  before_action :check_login, except: [:index, :show]
 
   def index
     # get info on active items for the big three...
@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    
   end
 
   def create
@@ -34,6 +35,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item), notice: "Successfully created #{@item.name}."
     else
+      flash[:error] = "This item could not be created."
       render action: 'new'
     end
   end

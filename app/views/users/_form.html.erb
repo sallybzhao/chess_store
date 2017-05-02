@@ -19,24 +19,25 @@
     <%= f.text_field :last_name %>
   </p>
   <p>
-    <%= f.label :email, "Email Address" %><br />
+    <%= f.label :email, "* Email Address" %> <br />
     <%= f.text_field :email %>
   </p>
   <p>
-    <%= f.label :password %><br />
+    <%= f.label :username, "* Username" %> <br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password, "* Password" %> <br />
     <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.label :password_confirmation, "* Confirm Password" %> <br />
     <%= f.password_field :password_confirmation %>
   </p>
     <p>
     <%= f.label :role %><br />
     <%= f.select :role, User::ROLES, :prompt => "Select ..." %>
   </p>
-    <p>
-    <%= f.label :band_id %><br />
-    <%= f.collection_select :band_id, Band.all, :id, :name, :prompt => "Choose..." %>
-  </p>
+    
   <p><%= f.submit (@user.new_record? ? "Sign up" : "Update") %></p>
 <% end %>

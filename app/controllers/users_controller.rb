@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_login, only: [:new, :create]
-  # authorize_resource
+  before_action :check_login, except: [:new, :create]
+  authorize_resource
 
   def index
     @users = User.alphabetical.paginate(:page => params[:page]).per_page(7)
@@ -18,14 +18,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.current_user
+    
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to home_path, notice: "Thank you for signing up!"
+      redirect_to user_path(current_user), notice: "Thank you for signing up!"
     else
       flash[:error] = "This user could not be created."
       render "new"
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.current_user
     if @user.update_attributes(user_params)
       flash[:notice] = "#{@user.proper_name} is updated."
       redirect_to @user
@@ -54,7 +53,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      if current_user && current_user.role?(:admin)
+      if current_user && (current_user.role?(:admin) || current_user.role?(:manager))
         params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :role, :active)  
       else
         params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :active)

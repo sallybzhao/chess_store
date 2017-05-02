@@ -5,7 +5,9 @@
       <tr>
         <th width="300">Name</th>
         <th width="100">Price</th>
+        <% if current_user.role == "manager" || current_user.role == "admin" %>
         <th width="100">Inventory</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -13,7 +15,9 @@
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>
-          <td><%= item.inventory_level %></td>
+          <% if current_user.role == "manager" || current_user.role == "admin" %>
+            <td><%= item.inventory_level %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
