@@ -23,8 +23,15 @@
     <%= f.text_field :email %>
   </p>
   <p>
+    <% if controller.action_name == 'edit' %>
+      <% if current_user.role != "shipper" && current_user.role != "customer" %>
+        <%= f.label :username, "* Username" %> <br />
+        <%= f.text_field :username %>
+      <% end %>
+    <% end %>
     <%= f.label :username, "* Username" %> <br />
     <%= f.text_field :username %>
+    
   </p>
   <p>
     <%= f.label :password, "* Password" %> <br />
@@ -35,8 +42,16 @@
     <%= f.password_field :password_confirmation %>
   </p>
     <p>
-    <%= f.label :role %><br />
-    <%= f.select :role, User::ROLES, :prompt => "Select ..." %>
+    <% if controller.action_name == 'edit' %>
+      <% if current_user.role != "shipper" && current_user.role != "customer" %>
+        <%= f.label :role %><br />
+        <%= f.select :role, User::ROLES, :prompt => "Select ..." %>
+      <% end %>
+    <% end %>
+    <% if !current_user.nil? %>
+      <%= f.label :role %><br />
+      <%= f.select :role, [['Customer', :customer]], :prompt => "Select ..." %>
+    <% end %>
   </p>
     
   <p><%= f.submit (@user.new_record? ? "Sign up" : "Update") %></p>

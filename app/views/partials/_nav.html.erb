@@ -6,30 +6,38 @@
         <li><%= link_to "Home", home_path %></li>
 
         <!-- options for items -->
-        <li class="has-dropdown">
-          <%= link_to "Items", items_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Item List", items_path %></li>
-            <li><%= link_to "Reorder List", home_path %></li>
-            <li><%= link_to "Add an Item", new_item_path %></li>
-          </ul>
+        
+          <li><%= link_to "Items", items_path %></li>
+
+        <% if logged_in? %>
+          <% if current_user.role != "shipper" && current_user.role != "customer" %>
+          <li class="has-dropdown">
+            <ul class="dropdown">
+              <li><%= link_to "Item List", items_path %></li>
+              <li><%= link_to "Reorder List", home_path %></li>
+              <li><%= link_to "Add an Item", new_item_path %></li>
+            </ul>
+          <% end %> 
         </li>
 
         <!-- options for purchases -->
-        <li>
-          <%= link_to "Purchases", purchases_path %>
-        </li>
+          <% if current_user.role != "shipper" && current_user.role != "customer" %>
+            <li>
+              <%= link_to "Purchases", purchases_path %>
+            </li>
+          <% end %>
 
-        <!-- options for prices -->
-        <li>
-          <%= link_to "Prices", item_prices_path %>
-        </li>
+          <!-- options for prices -->
+          <% if current_user.role != "shipper" && current_user.role != "customer" %>
+            <li>
+              <%= link_to "Prices", item_prices_path %>
+            </li>
+          <% end %>
 
-        <li>
-          <%= link_to "Schools", schools_path %>
-        </li>
+          <li>
+            <%= link_to "Schools", schools_path %>
+          </li>
 
-        <% if logged_in? %>
           <% if current_user.role == "manager" || current_user.role == "admin" %>
             <li><%= link_to "Users", users_path %></li>
           <% end %>
@@ -37,6 +45,17 @@
           <li>
             <%= link_to "My Account", user_path(current_user) %>
           </li>
+
+          
+        <% end %>
+
+        <!-- content once logged in goes here -->
+        <% if logged_in? %>
+          <li><%= link_to 'Logout', logout_path %></li>
+          <%#= current_user.proper_name %><%#= current_user.role %>
+        <% else %>
+          <li><%= link_to 'Login', login_path %></li>
+          <li><%= link_to 'Sign Up', new_user_path %></li>
         <% end %>
 
         

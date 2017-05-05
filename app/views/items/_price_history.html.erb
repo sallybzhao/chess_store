@@ -1,3 +1,4 @@
+<div id="price_history">
 <% unless @price_history.empty? %>
   <div class="panel clearfix">
     <h3>Price History</h3>
@@ -7,6 +8,9 @@
       <% end %>
     </ul>
 
-    <%= link_to("Change Price", new_item_price_path(this_item_id: @item.id), class: 'button tiny radius') %>
+    <%= link_to(new_item_price_path(this_item_id: @item.id), class: 'button tiny radius', id: 'new_item_price', remote: true) do %>
+        Change Price
+    <% end %>
   </div>
 <% end %>
+</div>

@@ -14,17 +14,18 @@
 <p>
   <b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
 </p>
+<% if logged_in? %>
+  <% if current_user.role == "manager" || current_user.role == "admin" %>
+  <p>
+    <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
+  </p>
+  <% end %>
 
-<% if current_user.role == "manager" || current_user.role == "admin" %>
-<p>
-  <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
-</p>
-<% end %>
-
-<% if current_user.role == "manager" || current_user.role == "admin" %>
-<p>
-  <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
-</p>
+  <% if current_user.role == "manager" || current_user.role == "admin" %>
+  <p>
+    <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
+  </p>
+  <% end %>
 <% end %>
 
 <p>
@@ -39,6 +40,6 @@
   <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
 </p>
 
-<p>
-  <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
-</p>
+<!-- <p>
+  <b>Active</b>: <%#= @item.active ? 'Yes' : 'No' %>
+</p> -->

@@ -5,8 +5,10 @@
       <tr>
         <th width="300">Name</th>
         <th width="100">Price</th>
-        <% if current_user.role == "manager" || current_user.role == "admin" %>
-        <th width="100">Inventory</th>
+        <% if logged_in? %>
+          <% if current_user.role == "manager" || current_user.role == "admin" %>
+          <th width="100">Inventory</th>
+          <% end %>
         <% end %>
       </tr>
     </thead>
@@ -15,8 +17,10 @@
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>
-          <% if current_user.role == "manager" || current_user.role == "admin" %>
-            <td><%= item.inventory_level %></td>
+          <% if logged_in? %>
+            <% if current_user.role == "manager" || current_user.role == "admin" %>
+              <td><%= item.inventory_level %></td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>

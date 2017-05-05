@@ -42,6 +42,11 @@ class Ability
         u.id == user.id
       end
 
+      # can edit profile
+      can :edit, User do |u|  
+        u.id == user.id
+      end
+
       # they can read info on orders that need to be shipped
       can :read, Order.not_shipped
       
@@ -51,6 +56,10 @@ class Ability
     elsif user.role? :customer
       # they can read their own profile
       can :show, User do |u|  
+        u.id == user.id
+      end
+
+      can :edit, User do |u|  
         u.id == user.id
       end
 
@@ -67,6 +76,10 @@ class Ability
       end
 
       # they can add schools
+      can :read, School #do |s|
+        #user_id == user.id
+      # end
+
       can :create, School
 
     else
