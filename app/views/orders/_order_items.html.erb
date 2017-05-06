@@ -1,0 +1,32 @@
+<% if @order_items.nil? || @order_items.empty? %>
+  <h4>No order items in this order at this time.</h4>
+<% else %>
+  <h4>Order Items</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="500">Item</th>
+        <th width="150">Price</th>
+        <th width="150">Quantity</th>
+        <th width="150">Subtotal</th>
+        <th width="300">Shipped On</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+          <td><%= order_item.item.current_price %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= order_item.subtotal %> </td>
+          <td><%= order_item.shipped_on %> </td>
+          <% if order_item.shipped_on.nil? %>
+            <td> <%= link_to(class: 'button tiny radius', remote: true) do %> Ship <% end %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<p>&nbsp;</p>

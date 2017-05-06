@@ -12,13 +12,26 @@
 
   <tbody>
     <% users.active.alphabetical.each do |user| %>
-      <tr>
-        <td> <%= link_to user.proper_name, user_path(user)  %> </td>
-        <td> <%= user.email %> </td>
-        <td> <%= user.phone %> </td>
-        <td> <%= user.role.capitalize %> </td>
-      </tr>
+      <% if current_user.role == "manager" %> 
+        <% if user.role != "admin" %>
+          <tr>
+            <td> <%= link_to user.proper_name, user_path(user)  %> </td>
+            <td> <%= user.email %> </td>
+            <td> <%= user.phone %> </td>
+            <td> <%= user.role.capitalize %> </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td> <%= link_to user.proper_name, user_path(user)  %> </td>
+          <td> <%= user.email %> </td>
+          <td> <%= user.phone %> </td>
+          <td> <%= user.role.capitalize %> </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody> 
 </table>
 <% end %>
+
+<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>

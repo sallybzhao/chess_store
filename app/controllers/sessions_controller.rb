@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
+
+  include ChessStoreHelpers::Cart
+
   def new
   end
   
   def create
+    create_cart
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

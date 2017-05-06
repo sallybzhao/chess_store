@@ -48,6 +48,7 @@ class Ability
       end
 
       # they can read info on orders that need to be shipped
+      can :read, Order
       can :read, Order.not_shipped
       
       # they can read information on items

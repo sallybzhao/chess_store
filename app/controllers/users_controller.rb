@@ -53,10 +53,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      if current_user && (current_user.role?(:admin) || current_user.role?(:manager))
-        params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :role, :active)  
-      else
-        params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :active)
-      end
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :role, :active)  
     end
 end

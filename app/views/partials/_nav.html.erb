@@ -7,18 +7,21 @@
 
         <!-- options for items -->
         
-          <li><%= link_to "Items", items_path %></li>
+          
 
         <% if logged_in? %>
           <% if current_user.role != "shipper" && current_user.role != "customer" %>
-          <li class="has-dropdown">
-            <ul class="dropdown">
-              <li><%= link_to "Item List", items_path %></li>
-              <li><%= link_to "Reorder List", home_path %></li>
-              <li><%= link_to "Add an Item", new_item_path %></li>
-            </ul>
+            <li class="has-dropdown">
+              <%= link_to "Items", items_path %>
+              <ul class="dropdown">
+                <li><%= link_to "Reorder List", home_path %></li>
+                <li><%= link_to "Add an Item", new_item_path %></li>
+              </ul>
+            </li>
+          <% else %> 
+            <li><%= link_to "Items", items_path %></li>
           <% end %> 
-        </li>
+          
 
         <!-- options for purchases -->
           <% if current_user.role != "shipper" && current_user.role != "customer" %>
@@ -40,13 +43,19 @@
 
           <% if current_user.role == "manager" || current_user.role == "admin" %>
             <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Orders", orders_path %></li>
           <% end %>
 
-          <li>
+          <li class="has-dropdown">
             <%= link_to "My Account", user_path(current_user) %>
+            <ul class="dropdown">
+              <li><%= link_to "My Orders", orders_path %></li>
+            </ul>
           </li>
 
-          
+        <% else %>
+          <!-- Guests -->
+          <li><%= link_to "Items", items_path %></li>
         <% end %>
 
         <!-- content once logged in goes here -->

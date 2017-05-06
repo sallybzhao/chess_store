@@ -5,6 +5,7 @@
   <% if current_user.role == "manager" || current_user.role == "shipper" %> 
     <%= render :partial => 'not_shipped' %>
   <% end %>
+  <%= render :partial => 'orders/my_orders' %>
 <% else %>
   <% render :partial => 'general_home' %>
 <% end %>

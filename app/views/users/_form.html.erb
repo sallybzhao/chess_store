@@ -41,6 +41,7 @@
     <%= f.label :password_confirmation, "* Confirm Password" %> <br />
     <%= f.password_field :password_confirmation %>
   </p>
+   <%= f.hidden_field :role, value: "customer" %>
     <p>
     <% if controller.action_name == 'edit' %>
       <% if current_user.role != "shipper" && current_user.role != "customer" %>
