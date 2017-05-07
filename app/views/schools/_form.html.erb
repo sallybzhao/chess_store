@@ -28,19 +28,19 @@
   </p>
   <p>
     <%= f.label :state %> <br />
-    <%= f.password_field :state %>
+    <%= f.text_field :state %>
   </p>
   <p>
     <%= f.label :zip %> <br />
-    <%= f.password_field :zip %>
+    <%= f.text_field :zip %>
   </p>
   <p>
     <%= f.label :min_grade %> <br />
-    <%= f.password_field :min_grade %>
+    <%= f.text_field :min_grade %>
   </p>
   <p>
     <%= f.label :max_grade %> <br />
-    <%= f.password_field :max_grade %>
+    <%= f.text_field :max_grade %>
   </p>
     
   <p><%= f.submit (@school.new_record? ? "Create" : "Update") %></p>
