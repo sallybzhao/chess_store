@@ -5,26 +5,33 @@
     <thead>
       <tr>
         <th width="150">Order ID</th>
-        <th width="150">Date</th>
-        <th width="150">School ID</th>
-        <th width="150">User ID</th>
+        <th width="150">Item ID</th>
+        <th width="150">Quantity</th>
+        <th width="150">Shipped On</th>
+        <th> Ship </th>
       </tr>
     </thead>
     <tbody>
       <% @not_shipped.each do |order| %>
-        <tr>
-          <td><%= link_to order.id, order_path(order), id: "order_id" %></td>
-          <td><%= order.date %></td>
-          <td><%= order.school_id %></td>
-          <td><%= order.user_id %></td>
-        </tr>
-        <tr>
+        <% order.order_items.each do |order_item| %>
+          <tr>
+            <td><%= link_to order_item.order.id, order_path(order), id: "order_id" %></td>
+            <td><%= order_item.item_id %></td>
+            <td><%= order_item.quantity %></td>
+            <td><%= order_item.shipped_on %></td>
+            <td> <%= link_to(class: 'button tiny radius', remote: true) do %> Ship <% end %> </td>
+          </tr>
+          <tr>
           <!-- Show order items -->
 
         <tr>
+        <% end %> 
       <% end %>
     </tbody>
   </table>
 <% else %>
   <p>There are no items that need to be reorder at this time.</p>
 <% end %>
+
+
+

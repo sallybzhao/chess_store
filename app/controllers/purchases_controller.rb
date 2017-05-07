@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   before_action :check_login
   
   def index
-    @purchases = Purchase.chronological.to_a
+    @purchases = Purchase.chronological.paginate(:page => params[:page]).per_page(7)
   end
 
   def new
@@ -13,11 +13,19 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.date = Date.current
-    
-    if @purchase.save
-      redirect_to purchases_path, notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
-    else
-      render action: 'new'
+
+    respond_to do |format|
+      if @purchase.save
+        
+        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+        # format.json { render action: 'show', status: :created, location: @item_price }
+        @purchases = Purchase.all.chronological.to_a
+        format.js
+      else
+        format.html { render action: 'new' }
+        # format.json { render json: @item_prices.errors, status: :unprocessable_entity }
+        #render action: 'new'
+      end
     end
   end
 

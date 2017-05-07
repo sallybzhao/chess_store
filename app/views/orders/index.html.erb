@@ -1,11 +1,5 @@
 <% if current_user.role == "manager" || current_user.role == "admin" %>
-    <%= render partial: "partials/index_structure", locals: {model_name: "order", 
-                                                         primary: "orders_index", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+    <%= render partial: "orders_index" %>
 <% else %>
-    <%= render partial: "partials/index_structure", locals: {model_name: "order", 
-                                                         primary: "my_orders", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+    <%= render partial: "my_orders" %>
 <% end %>

@@ -1,4 +1,5 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "purchase", 
-                                                         primary: "recent_purchases", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<div class="row">
+  <div class="small-7 columns">
+    <%= render :partial => "recent_purchases" %>
+  </div>
+</div>

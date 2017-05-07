@@ -48,6 +48,7 @@
         <%= f.label :role %><br />
         <%= f.select :role, User::ROLES, :prompt => "Select ..." %>
       <% end %>
+    <% elseif controller.action_name == 'new' %>
     <% end %>
     <% if !current_user.nil? %>
       <%= f.label :role %><br />

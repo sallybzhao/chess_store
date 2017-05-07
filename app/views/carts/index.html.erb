@@ -1,0 +1,18 @@
+<% unless @cart_items.nil? || @cart_items.empty? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="300">Order ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+    No items in the cart
+<% end %>

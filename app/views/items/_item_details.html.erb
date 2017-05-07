@@ -1,3 +1,4 @@
+<div id="item_details">
 <div class="row">
   <div class="small-7 columns">
     <h3><%= @item.name %></h3>
@@ -18,9 +19,7 @@
 </p>
 <% if logged_in? %>
   <% if current_user.role != "customer" %>
-  <p>
-    <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
-  </p>
+    <%= render :partial => "inventory_level" %>
   <% end %>
 
   <% if current_user.role == "manager" || current_user.role == "admin" %>
@@ -41,6 +40,8 @@
 <p>
   <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
 </p>
+
+</div>
 
 <!-- <p>
   <b>Active</b>: <%#= @item.active ? 'Yes' : 'No' %>

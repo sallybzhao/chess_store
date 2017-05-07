@@ -4,7 +4,7 @@ class SchoolsController < ApplicationController
   authorize_resource
 
   def index
-    @schools = School.alphabetical.paginate(:page => params[:page]).per_page(7)
+    @schools = School.active.alphabetical.map paginate(:page => params[:page]).per_page(7)
   end
 
   def show
