@@ -3,16 +3,30 @@
     <thead>
       <tr>
         <th width="300">Order ID</th>
+        <th> Price </th>
+        <th> Quantity </th>
+        <th> Subtotal </th>
+        <th> </th>
       </tr>
     </thead>
     <tbody>
-      <% @cart_items.each do |item| %>
+      <% @cart_items.each do |order_item| %>
         <tr>
-          <td><%= link_to item.name, item_path(item) %></td>
+          <td><%= link_to order_item.item.name, item_path(order_item.item.id) %></td>
+          <td> <%= number_to_currency(order_item.item.current_price) %> </td>
+          <td> <%= order_item.quantity %> </td>
+          <td> <%= number_to_currency(order_item.subtotal) %> </td>
+          <td><%= link_to "Remove", remove_from_cart_path(order_item.item.id) %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <p> Order Total : <%= number_to_currency(@total_cost) %> </p>
+  <%= link_to(new_order_path, class: 'button radius') do %>
+    Checkout
+  <% end %>
+
+  <p> Shipping Costs </p>
 <% else %>
     No items in the cart
 <% end %>

@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :order_items
   resources :schools
   resources :sessions
-  resources :carts, only: [:index]
 
   # authentication routes
   get 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -17,7 +16,9 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
 
-  get 'add_to_cart' => 'carts#add_to_cart', :as => :add_to_cart
+  get 'index' => 'carts#index', :as => :index
+  get 'add_to_cart/:id' => 'carts#add_to_cart', :as => :add_to_cart
+  get 'remove_from_cart/:id' => 'carts#remove_from_cart', :as => :remove_from_cart
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home

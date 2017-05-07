@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to order_path, notice: "Successfully created new order!"
+      redirect_to orders_path, notice: "Successfully created new order!"
     else
       flash[:error] = "This order could not be created."
       render "new"

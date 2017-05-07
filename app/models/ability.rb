@@ -32,6 +32,7 @@ class Ability
       # they can read info about customers, school, orders
       can :read, School
       can :read, Order
+      can :create, Order
       can :read, User do |u|
         u.role == "customer"
       end
@@ -49,6 +50,7 @@ class Ability
 
       # they can read info on orders that need to be shipped
       can :read, Order
+      can :create, Order
       can :read, Order.not_shipped
       
       # they can read information on items

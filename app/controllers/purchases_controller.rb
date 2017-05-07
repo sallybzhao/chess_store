@@ -8,6 +8,7 @@ class PurchasesController < ApplicationController
 
   def new
     @purchase = Purchase.new
+    @item_id = params[:this_item_id]
   end
 
   def create
@@ -16,12 +17,14 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        
+        puts "hello"
         format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @item_price }
+        @item = @purchase.item
         @purchases = Purchase.all.chronological.to_a
         format.js
       else
+        puts "bye"
         format.html { render action: 'new' }
         # format.json { render json: @item_prices.errors, status: :unprocessable_entity }
         #render action: 'new'

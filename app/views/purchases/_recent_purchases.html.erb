@@ -25,7 +25,7 @@
 
 <%= will_paginate @purchases, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
-<%= link_to(new_purchase_path(this_item_id: @item.id), class: 'button tiny radius', id: 'new_purchase_link', remote: true) do %>
+<%= link_to(new_purchase_path, class: 'button tiny radius', id: 'new_purchase_link', remote: true) do %>
         Add Purchase
 <% end %>
 </div>
