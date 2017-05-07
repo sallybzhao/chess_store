@@ -12,6 +12,10 @@
     <% end %>
     <%= f.input :reorder_level, input_html: {class: "avg"} %>
     <%= f.input :active %>
+    <div class="field">
+      <%= f.label :picture %><br />
+      <%= f.file_field :picture %>
+    </div>
 
 
     <div class="form-actions">
