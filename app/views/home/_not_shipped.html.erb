@@ -19,12 +19,8 @@
             <td><%= order_item.item_id %></td>
             <td><%= order_item.quantity %></td>
             <td><%= order_item.shipped_on %></td>
-            <td> <%= link_to(class: 'button tiny radius', remote: true) do %> Ship <% end %> </td>
+            <td> <%= link_to(class: 'button tiny radius', id: 'ship_item_link', remote: true) do %> Ship <% end %> </td>
           </tr>
-          <tr>
-          <!-- Show order items -->
-
-        <tr>
         <% end %> 
       <% end %>
     </tbody>

@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
   before_action :check_login, except: [:new, :create]
   authorize_resource
 
+  include ChessStoreHelpers::Cart
+
   def index
     @orders = Order.chronological.paginate(:page => params[:page]).per_page(7)
     @my_orders = current_user.orders.chronological.to_a
@@ -24,6 +26,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to orders_path, notice: "Successfully created new order!"
+      save_each_item_in_cart(@order)
+      clear_cart
     else
       flash[:error] = "This order could not be created."
       render "new"
