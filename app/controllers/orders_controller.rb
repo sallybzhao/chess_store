@@ -30,7 +30,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.update_attributes(:grand_total => calculate_cart_items_cost + calculate_cart_shipping) 
-    @order.pay
     if @order.save
       redirect_to orders_path, notice: "Successfully created new order!"
       save_each_item_in_cart(@order)
