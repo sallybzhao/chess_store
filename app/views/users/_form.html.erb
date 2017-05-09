@@ -41,7 +41,6 @@
     <%= f.label :password_confirmation, "* Confirm Password" %> <br />
     <%= f.password_field :password_confirmation %>
   </p>
-   <%= f.hidden_field :role, value: "customer" %>
     <p>
 
 
@@ -59,7 +58,7 @@
     <% elsif controller.action_name == 'new' %>
       <!-- guests can only be customers, managers can create employees -->
       <% if current_user.nil? %>
-        <%= f.select :role, [['Customer', :customer]], :prompt => "Select ..." %>
+        <%= f.hidden_field :role, value: "customer" %>
       <% elsif current_user.role == "manager" %>
         <%= f.label :role %><br />
         <%= f.select :role, [['Manager', :manager],['Shipper', :shipper]], :prompt => "Select ..." %>

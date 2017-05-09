@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   authorize_resource
 
   include ChessStoreHelpers::Cart
+  include ChessStoreHelpers::Shipping
 
   def index
     @orders = Order.chronological.paginate(:page => params[:page]).per_page(7)
@@ -16,6 +17,10 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @cart_items = get_list_of_items_in_cart
+    @total_cost = calculate_cart_items_cost
+    @shipping_cost = calculate_cart_shipping
+    @grand_total = @total_cost + @shipping_cost
   end
 
   def edit
@@ -24,6 +29,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.update_attributes(:grand_total => calculate_cart_items_cost + calculate_cart_shipping) 
+    @order.pay
     if @order.save
       redirect_to orders_path, notice: "Successfully created new order!"
       save_each_item_in_cart(@order)
@@ -55,6 +62,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:date, :school_id, :user_id, :grand_total, :payment_receipt)  
+      params.require(:order).permit(:date, :school_id, :user_id, :payment_receipt)  
     end
 end

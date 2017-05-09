@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :check_login, except: [:new, :create]
   authorize_resource
 
+  include ChessStoreHelpers::Cart
+
   def index
     @users = User.alphabetical.paginate(:page => params[:page]).per_page(7)
   end
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(current_user), notice: "Thank you for signing up!"
+      create_cart
     else
       flash[:error] = "This user could not be created."
       render "new"

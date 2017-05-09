@@ -17,9 +17,9 @@
       <% @order_items.each do |order_item| %>
         <tr>
           <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
-          <td><%= order_item.item.current_price %></td>
+          <td><%= number_to_currency(order_item.item.current_price) %></td>
           <td><%= order_item.quantity %></td>
-          <td><%= order_item.subtotal %> </td>
+          <td><%= number_to_currency(order_item.subtotal) %> </td>
           <td><%= order_item.shipped_on %> </td>
           <% if order_item.shipped_on.nil? %>
             <td> <%= link_to(class: 'button tiny radius', remote: true) do %> Ship <% end %> </td>
