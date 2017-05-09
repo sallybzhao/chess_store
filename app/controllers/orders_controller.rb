@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to orders_path, notice: "Successfully created new order!"
       save_each_item_in_cart(@order)
+      @order.pay
       clear_cart
     else
       flash[:error] = "This order could not be created."
@@ -61,6 +62,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:date, :school_id, :user_id, :payment_receipt)  
+      params.require(:order).permit(:date, :school_id, :user_id, :payment_receipt, :credit_card_number, :expiration_month, :expiration_year)  
     end
 end

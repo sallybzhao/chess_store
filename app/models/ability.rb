@@ -51,7 +51,7 @@ class Ability
       # they can read info on orders that need to be shipped
       can :read, Order
       can :create, Order
-      can :read, Order.not_shipped
+      can :read, Order
       
       # they can read information on items
       can :read, Item
@@ -68,7 +68,7 @@ class Ability
 
       # they can place new orders, cancel unshipped orders
       can :create, Order 
-      can :destroy, Order.not_shipped
+      can :destroy, Order
       
       # they can read info about items
       can :read, Item

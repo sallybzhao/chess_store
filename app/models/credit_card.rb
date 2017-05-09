@@ -28,6 +28,8 @@ class CreditCard
   
   def expired?
     today = Date.current
+    puts "----------------"
+    puts (today.year.is_a?(Integer))
     expiration_year < today.year or (expiration_year == today.year and expiration_month < today.month)
   end
   

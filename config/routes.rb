@@ -19,12 +19,14 @@ Rails.application.routes.draw do
   get 'index' => 'carts#index', :as => :index
   get 'add_to_cart/:id' => 'carts#add_to_cart', :as => :add_to_cart
   get 'remove_from_cart/:id' => 'carts#remove_from_cart', :as => :remove_from_cart
+  get 'destroy_order/:id' => 'orders#destroy', :as => :destroy_order
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+  get 'ship/:id' => 'home#ship', as: :ship
   
   # Set the root url
   root :to => 'home#home'  

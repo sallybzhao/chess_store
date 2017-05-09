@@ -9,8 +9,10 @@
         <th width="225">Date</th>
         <th width="150">School</th>
         <th width="150">User</th>
+        <th width="150">Shipped</th>
         <th width="150">Grand Total</th>
         <th width="150">Payment Confirmation</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,9 +22,17 @@
           <td><%= order.date.strftime('%m/%d/%y') %></td>
           <td><%= order.school_id %></td>
           <td><%= order.user_id %></td>
+          <td><%= Order.not_shipped.include?(order) %></td>
           
           <td><%= number_to_currency(order.grand_total) %></td>
           <td><%= order.payment_receipt %></td>
+          <% if !Order.not_shipped.include?(order) %>
+            <td><%= link_to(destroy_order_path(order.id), class: 'tiny button radius') do %>
+              Destroy
+            <% end %> </td>
+          <% else %>
+            <td> </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

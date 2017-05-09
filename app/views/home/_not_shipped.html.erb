@@ -1,3 +1,4 @@
+<div id="not_shipped_table">
 <h5>Not Shipped</h5>
 
 <% unless @not_shipped.nil? || @not_shipped.empty? %>
@@ -19,7 +20,7 @@
             <td><%= order_item.item_id %></td>
             <td><%= order_item.quantity %></td>
             <td><%= order_item.shipped_on %></td>
-            <td> <%= link_to(class: 'button tiny radius', id: 'ship_item_link', remote: true) do %> Ship <% end %> </td>
+            <td> <%= link_to(ship_path(order_item), class: 'button tiny radius', id: 'ship_item_link', remote: true) do %> Ship <% end %> </td>
           </tr>
         <% end %> 
       <% end %>
@@ -28,6 +29,7 @@
 <% else %>
   <p>There are no items that need to be reorder at this time.</p>
 <% end %>
+</div>
 
 
 
