@@ -1,14 +1,16 @@
 <% if logged_in? %>
-  <% if current_user.role == "manager" || current_user.role == "admin" %> 
+  <% if current_user.role == "admin" %> 
     <%= render :partial => 'reorder_list' %>
-  <% end %>
-  <% if current_user.role == "manager" || current_user.role == "shipper" %> 
+  <% elsif current_user.role == "manager" %> 
+    <%= render :partial => 'reorder_list' %>
+    </br>
     <%= render :partial => 'not_shipped' %>
     <%#= render :partial => 'not_shipped' %>
-  <% end %>
-  <% if current_user.role == "customer" %>
-    <%= render :partial => 'orders/my_orders' %>
+    <% elsif current_user.role == "shipper" %>
+      <%= render :partial => 'not_shipped' %>
+    <% elsif current_user.role == "customer" %>
+      <%= render :partial => 'orders/my_orders' %>
   <% end %>
 <% else %>
-  <%= render :partial => 'general_home' %>
+      <%= render :partial => 'general_home' %>
 <% end %>

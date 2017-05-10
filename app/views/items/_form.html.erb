@@ -1,26 +1,24 @@
+<div id="form">
 <%= simple_form_for @item, html: { class: 'form-horizontal', multipart: true } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Item</legend>
 
-    <%= f.input :name, input_html: {class: "avg"} %>
-    <%= f.input :description, input_html: { :rows => 4, class: "avg" } %>
-    <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :color, input_html: {class: "avg"} %>
-    <%= f.input :weight, input_html: {class: "avg"} %>
+    <%= f.input :name, label: false, placeholder: "Name" %>
+    <%= f.input :description, input_html: { :rows => 4}, label: false, placeholder: "Description" %>
+    <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, label: false, :prompt => "Select Category..." %>
+    <%= f.input :color, label: false, placeholder: "Color" %>
+    <%= f.input :weight, label: false, placeholder: "Weight" %>
     <% if controller.action_name == "new" %>
-      <%= f.input :inventory_level, input_html: {class: "avg"} %>
+      <%= f.input :inventory_level, label: false, placeholder: "Inventory Level" %>
     <% end %>
-    <%= f.input :reorder_level, input_html: {class: "avg"} %>
+    <%= f.input :reorder_level, label: false, placeholder: "Reorder Level" %>
     <%= f.input :active %>
     <div class="field">
       <%= f.label :picture %><br />
       <%= f.file_field :picture %>
     </div>
 
-
     <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', items_path, :class => 'button alert radius' %>
+      <span style="float:right;"><%= f.submit nil, :class => 'button radius' %></span>
+      <span style="float:left; margin-top: -100px;"><%= link_to 'Cancel', items_path, :class => 'button alert radius' %></span>
     </div>
-  </fieldset>
 <% end %>
+</div>

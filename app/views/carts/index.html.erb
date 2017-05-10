@@ -1,5 +1,5 @@
 <% unless @cart_items.nil? || @cart_items.empty? %>
-  <h3 id="center_heading"> My Cart </h3>
+  <h3 id="center_heading"> MY CART </h3> <hr/> <br/>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -8,25 +8,25 @@
         <th> Quantity </th>
         <th> Subtotal </th>
         <th> </th>
-        <th> </th>
+        <th width="50"> </th>
       </tr>
     </thead>
     <tbody>
       <% @cart_items.each do |order_item| %>
         <tr>
-          <td><%= link_to order_item.item.name, item_path(order_item.item.id) %></td>
+          <td><%= link_to order_item.item.name, item_path(order_item.item.id), {:style=>'color: #bb892a;'} %></td>
           <td> <%= number_to_currency(order_item.item.current_price) %> </td>
           <td> <%= order_item.quantity %> </td>
           <td> <%= number_to_currency(order_item.subtotal) %> </td>
           <td><%= link_to "Remove", remove_from_cart_path(order_item.item.id) %> </td>
-          <td><%= link_to(add_to_cart_path(order_item.item.id), class: 'tiny button radius') do %>
-            Add to Cart
+          <td><%= link_to(add_to_cart_path(order_item.item.id), class: 'tiny alert button radius') do %>
+            Add
           <% end %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <p> Order Total : <%= number_to_currency(@total_cost) %> </p>
+  <p> Order Subtotal : <%= number_to_currency(@total_cost) %> </p>
   <%= link_to(new_order_path, class: 'button radius') do %>
     Checkout
   <% end %>

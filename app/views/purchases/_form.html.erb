@@ -4,7 +4,7 @@
 
     <%#= f.input :item_id, collection: Item.active.alphabetical.to_a, include_blank: true, input_html: {class: "avg"} %>
     <%= f.hidden_field :item_id, value: @item_id %>
-    <%= f.input :quantity, input_html: {class: "avg"} %>
+    <%= f.input :quantity, input_html: {class: "avg"}, placeholder: "Quantity", label: false %>
 
 
     <div class="form-actions">

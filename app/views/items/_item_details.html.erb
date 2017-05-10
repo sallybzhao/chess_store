@@ -1,20 +1,38 @@
 <div id="item_details">
 <div class="row">
   <div class="small-7 columns">
-    <h3><%= @item.name %></h3>
   </div>
   <div class="small-5 columns">
-    <% unless @item.picture_url.nil? %>
+  </div>
+</div>
+<h3 style="margin: 0px auto;"><%= @item.name.upcase %></h3><hr/> <br/>
+<p>
+  <div class="small-5 columns">
+  <% unless @item.picture_url.nil? %>
       <p><%= image_tag @item.picture_url %></p>
     <% end %>
   </div>
-</div>
-<p>
-  <b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
-
+<b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
 </p>
 
-<p> <%= @item.description %></p>
+
+ <%= link_to(add_to_cart_path, class: 'button alert radius left') do %>
+    Add to Cart
+  <% end %>
+
+<br/><br/><br/><br/><br/><br/>
+<div>
+<h5>  PRODUCT DETAILS </h5>
+<p style="width: 400px;"><%= @item.description %></p>
+<ul>
+  <% if !@item.color.nil? %>
+    <li> <%= @item.color %></li>
+  <% end %>
+
+  <% if !@item.weight.nil? %>
+  <li> <%= @item.weight %> lbs. </li>
+  <% end %>
+
 
 <% if logged_in? %>
   <% if current_user.role != "customer" %>
@@ -22,26 +40,15 @@
   <% end %>
 
   <% if current_user.role == "manager" || current_user.role == "admin" %>
-  <p>
+  <li>
     <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
-  </p>
+  </li>
   <% end %>
 <% end %>
+</ul>
+</div>
 
-<p>
-  <b>Category</b>: <%= @item.category.capitalize %>
-</p>
 
-<p>
-  <b>Color</b>: <%= @item.color.nil? ? 'N/A' : @item.color %>
-</p>
-
-<p>
-  <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
-</p>
- <%= link_to(add_to_cart_path, class: 'button alert radius right') do %>
-    Add to Cart
-  <% end %>
 
 </div>
 

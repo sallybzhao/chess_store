@@ -2,7 +2,9 @@
 <% if @purchases.empty? %>
   <h4>No purchases at this time.</h4>
 <% else %>
-  <h3 style="margin-left: 37%;">RECENT PURCHASES</h3> <hr /> <br />
+  <h3 style="margin-left: 37%;">RECENT PURCHASES</h3> 
+
+  <hr /> <br />
   <table class="table table-striped" style="margin: 0px auto;">
     <thead>
       <tr>
@@ -25,7 +27,4 @@
 
 <span style="margin: 0px auto;"><%= will_paginate @purchases, previous_label: "<&nbsp;", next_label: "&nbsp;>" %></span>
 
-<%= link_to(new_purchase_path, class: 'button radius', id: 'new_purchase_link', remote: true) do %>
-        Add Purchase
-<% end %>
 </div>

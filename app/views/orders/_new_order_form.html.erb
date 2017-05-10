@@ -1,5 +1,7 @@
+<h3 id="center_heading"> CHECKOUT </h3> <hr/> <br/>
+
 <% unless @cart_items.nil? || @cart_items.empty? %>
-  <table class="table table-striped">
+  <table class="table table-striped" id="checkout_table">
     <thead>
       <tr>
         <th width="300">Order ID</th>
@@ -12,23 +14,27 @@
     <tbody>
       <% @cart_items.each do |order_item| %>
         <tr>
-          <td><%= link_to order_item.item.name, item_path(order_item.item.id) %></td>
+          <td><%= link_to order_item.item.name, item_path(order_item.item.id), {:style=>'color: #bb892a;'} %></td>
           <td> <%= number_to_currency(order_item.item.current_price) %> </td>
           <td> <%= order_item.quantity %> </td>
           <td> <%= number_to_currency(order_item.subtotal) %> </td>
-          <td><%= link_to "Remove", remove_from_cart_path(order_item.item.id) %> </td>
+          <td><%= link_to "Remove", remove_from_cart_path(order_item.item.id), {:style=>'color: #bb892a;'} %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <p> Order Subtotal: <%= number_to_currency(@total_cost) %> </p>
-  <p> Shipping Cost : <%= number_to_currency(@shipping_cost) %> </p>
-  <p> Grand Total : <%= number_to_currency(@grand_total) %> </p>
+
+  <div id="costs">
+    <p> Order Subtotal: <%= number_to_currency(@total_cost) %> </p>
+    <p> Shipping Cost : <%= number_to_currency(@shipping_cost) %> </p>
+    <p style="color: #bb892a;"> Grand Total : <%= number_to_currency(@grand_total) %> </p>
+  </div>
 
 <% else %>
     No items in the cart
 <% end %>
 
+<div id="checkout_form">
 <%= simple_form_for @order do |f| %>
     <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -41,28 +47,22 @@
       </ul>
     </div>
   <% end %>
-    <h3> My Information </h3>
+    <h4> MY INFORMATION </h4>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <p> Name: <%= current_user.proper_name %> </p>
     <p> Email: <%= current_user.email %> </p>
     <p> Phone: <%= current_user.phone %> </p>
 
-    <p> Ship To </p>
-  <%= f.input :school_id, :collection => School.active.alphabetical, :prompt => "Select School..." %>
+    <h4> SHIP TO </h4>
+  <span id="select_school"><%= f.input :school_id, :collection => School.active.alphabetical, :prompt => "Select School...", label: false %></span>
 
-  <h3> Payment Information </h3>
-    <p>
-      <%= f.label :credit_card_number %> <br />
-      <%= f.text_field :credit_card_number %>
+  <h4> PAYMENT INFORMATION </h4>
+    <p style="width: 300px;">
+      <%= f.text_field :credit_card_number, placeholder: 'Credit Card Number'  %>
+      <%= f.text_field :expiration_month, placeholder: 'Expiration Month'  %>
+      <%= f.text_field :expiration_year, placeholder: 'Expiration Year'  %>
     </p>
-    <p>
-      <%= f.label :expiration_year %> <br />
-      <%= f.text_field :expiration_year %>
-
-      <%= f.label :expiration_month %> <br />
-      <%= f.text_field :expiration_month %>
-    </p>
-  
-  <p><%= f.submit (@order.new_record? ? "Place Order" : "Update") %></p>
+</div>
+  <p><%= f.submit (@order.new_record? ? "Place Order" : "Update"), class: "button" %></p>
 
 <% end %>

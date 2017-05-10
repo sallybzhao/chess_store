@@ -7,7 +7,7 @@
     <% if logged_in? %>
       <% if current_user.role == "admin" || current_user.role == "manager" %>
         <%= render :partial => "price_history" unless @price_history.empty?%>
-        <%= link_to(new_purchase_path(this_item_id: @item.id), class: 'button tiny radius', id: 'new_purchase_link', remote: true) do %>
+        <%= link_to(new_purchase_path(this_item_id: @item.id), class: 'button radius', id: 'new_purchase_link', remote: true) do %>
         Reorder Item
       <% end %>
       <% end %>

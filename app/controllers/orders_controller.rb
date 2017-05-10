@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.update_attributes(:grand_total => calculate_cart_items_cost + calculate_cart_shipping) 
     if @order.save
-      redirect_to orders_path, notice: "Successfully created new order!"
+      redirect_to orders_path, notice: "Your order has been placed!"
       save_each_item_in_cart(@order)
       @order.pay
       clear_cart
