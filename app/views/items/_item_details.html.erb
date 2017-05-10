@@ -9,14 +9,13 @@
     <% end %>
   </div>
 </div>
-
-<p>
-  <b>Description</b>: <%= @item.description %>
-</p>
-
 <p>
   <b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
+
 </p>
+
+<p> <%= @item.description %></p>
+
 <% if logged_in? %>
   <% if current_user.role != "customer" %>
     <%= render :partial => "inventory_level" %>
@@ -40,6 +39,9 @@
 <p>
   <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
 </p>
+ <%= link_to(add_to_cart_path, class: 'button alert radius right') do %>
+    Add to Cart
+  <% end %>
 
 </div>
 

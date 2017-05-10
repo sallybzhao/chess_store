@@ -1,15 +1,12 @@
 <div class="row">
   <%# if current_user.role == "manager" || current_user.role == "admin" %>
-    <div class="small-10 columns">
+    <div class="small-12 columns">
       <% if @schools.empty? %>
         <h3>No schools at this time</h3>
       <% else %>
-        <h3>LIST OF SCHOOLS</h3> <hr /> <br/>
+        <h3 style="margin-left: 37%;" >LIST OF SCHOOLS</h3> <hr /> <br/>
         <%= render :partial => "schools_index", locals: {schools: @schools} %>
       <% end %>
-    </div>
-    <div class="small-2 columns">
-      &nbsp;
     </div>
 </div>
 

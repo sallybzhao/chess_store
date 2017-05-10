@@ -1,8 +1,7 @@
 <% if schools.empty? %>
   <h4>No schools at this time.</h4>
 <% else %>
-<table id="ph-table">
-  <thead> Schools </thead>
+<table id="ph-table" style="margin: 0px auto;">
   <tr>
     <th> Name </th>
     <th> Street</th>
@@ -31,5 +30,5 @@
 </table>
 <% end %>
 
-<%= will_paginate @schools, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= will_paginate @schools, previous_label: "<&nbsp;", next_label: "&nbsp;>" %>
 

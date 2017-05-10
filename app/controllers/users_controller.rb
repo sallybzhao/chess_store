@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(current_user), notice: "Thank you for signing up!"
+      redirect_to user_path(current_user)
       create_cart
     else
       render "new"

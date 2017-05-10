@@ -30,9 +30,9 @@
 
           <!-- options for prices -->
           <% if current_user.role != "shipper" && current_user.role != "customer" %>
-            <li>
-              <%= link_to "PRICES", item_prices_path %>
-            </li>
+            <!-- <li>
+              <%#= link_to "PRICES", item_prices_path %>
+            </li> -->
           <% end %>
 
           <% if current_user.role != "shipper" %>

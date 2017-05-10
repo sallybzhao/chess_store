@@ -2,11 +2,11 @@
 <% if @purchases.empty? %>
   <h4>No purchases at this time.</h4>
 <% else %>
-  <h4>Recent Purchases</h4>
-  <table class="table table-striped">
+  <h3 style="margin-left: 37%;">RECENT PURCHASES</h3> <hr /> <br />
+  <table class="table table-striped" style="margin: 0px auto;">
     <thead>
       <tr>
-        <th width="225">Item</th>
+        <th width="350">Item</th>
         <th width="150">Quantity</th>
         <th width="150">Date</th>
       </tr>
@@ -14,7 +14,7 @@
     <tbody>
       <% @purchases.each do |purchase| %>
         <tr>
-          <td><%= link_to purchase.item.name, item_path(purchase.item) %></td>
+          <td><%= link_to purchase.item.name, item_path(purchase.item), {:style=>'color: #bb892a;'} %></td>
           <td><%= purchase.quantity %></td>
           <td><%= purchase.date.strftime('%m/%d/%y') %></td>
         </tr>
@@ -23,9 +23,9 @@
   </table>
 <% end %>
 
-<%= will_paginate @purchases, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<span style="margin: 0px auto;"><%= will_paginate @purchases, previous_label: "<&nbsp;", next_label: "&nbsp;>" %></span>
 
-<%= link_to(new_purchase_path, class: 'button tiny radius', id: 'new_purchase_link', remote: true) do %>
+<%= link_to(new_purchase_path, class: 'button radius', id: 'new_purchase_link', remote: true) do %>
         Add Purchase
 <% end %>
 </div>

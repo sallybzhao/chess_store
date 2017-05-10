@@ -1,8 +1,9 @@
 <div class="row">
-  <div class="small-7 columns">
+  <div class="small-8 columns">
     <%= render :partial => "item_details" %>
   </div>
-  <div class="small-5 columns">
+  <div class="small-4 columns">
+    <%= render :partial => "similar_items" unless @similar_items.empty?%>
     <% if logged_in? %>
       <% if current_user.role == "admin" || current_user.role == "manager" %>
         <%= render :partial => "price_history" unless @price_history.empty?%>
@@ -10,7 +11,6 @@
         Reorder Item
       <% end %>
       <% end %>
-      <%= render :partial => "similar_items" unless @similar_items.empty?%>
     <% end %> 
   </div>
 </div>
@@ -21,7 +21,5 @@
     <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
   <% end %>
 
-  <%= link_to(add_to_cart_path, class: 'button radius') do %>
-    Add to Cart
-  <% end %>
+  
 <% end %>

@@ -1,16 +1,12 @@
 <div class="row">
   <% if current_user.role == "manager" || current_user.role == "admin" %>
-    <div class="small-8 columns">
+    <div class="small-12 columns">
       <% if @users.empty? %>
         <h3>No users at this time</h3>
       <% else %>
-        <h3>List of Users</h3>
+        <h3 id="center_heading">ALL USERS</h3> <hr/> <br/>
         <%= render :partial => "users_index", locals: {users: @users} %>
       <% end %>
-    </div>
-    <!-- <div class="small-1 columns">&nbsp;</div> -->
-    <div class="small-4 columns">
-      &nbsp;
     </div>
   <% end %>
 </div>

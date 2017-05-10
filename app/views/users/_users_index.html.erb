@@ -1,13 +1,12 @@
 <% if users.empty? %>
   <h4>No users at this time.</h4>
 <% else %>
-<table id="ph-table">
-  <thead> Users </thead>
+<table id="ph-table" style="margin: 0px auto;">
   <tr>
-    <th> Name </th>
-    <th> Email </th>
-    <th> Phone </th>
-    <th> Role </th>
+    <th width="200"> Name </th>
+    <th width="275"> Email </th>
+    <th width="175"> Phone </th>
+    <th width="175"> Role </th>
   </tr>
 
   <tbody>
@@ -15,7 +14,7 @@
       <% if current_user.role == "manager" %> 
         <% if user.role != "admin" %>
           <tr>
-            <td> <%= link_to user.proper_name, user_path(user)  %> </td>
+            <td> <%= link_to user.proper_name, user_path(user), {:style=>'color: #bb892a;'}  %> </td>
             <td> <%= user.email %> </td>
             <td> <%= user.phone %> </td>
             <td> <%= user.role.capitalize %> </td>
@@ -34,4 +33,4 @@
 </table>
 <% end %>
 
-<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= will_paginate @users, previous_label: "<&nbsp;", next_label: "&nbsp;>" %>

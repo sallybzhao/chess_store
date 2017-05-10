@@ -5,8 +5,8 @@
 
     <%#= f.input :item_id, collection: Item.active.to_a, include_blank: true, input_html: {class: "avg"} %>
     <%= f.hidden_field :item_id, value: @item_id %>
-    <%= f.input :price, label: 'New Price' %>
-     <%= f.input :category, collection: ItemPrice::CATEGORIES %>
+    <%= f.input :price, label: false, placeholder: 'Price' %>
+     <%= f.input :category, collection: ItemPrice::CATEGORIES, label: false, :prompt => "Select Category..." %>
 
 
     <div class="form-actions"> 
