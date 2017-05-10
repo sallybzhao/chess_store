@@ -1,62 +1,41 @@
 <% unless items.nil? || items.empty? %>
-  <h5><%= item_type.capitalize %></h5>
+  <h5 id="category"><%= item_type.upcase %></h5>
 
-  <table class="table table-striped">
-    <tr>
-        <th></th>
-        <% if logged_in? %>
-          <% if current_user.role == "manager" || current_user.role == "admin" %>
-          <th width="100">Inventory</th>
-          <% end %>
-        <% end %>
-    </tr>
+  <table class="table">
+    
     <tbody>
-      <% items.each do |item| %>
-        <tr>
-          <td> <p><%= link_to image_tag("#{item.picture}"), item_path(item) %></p> 
-               <p><%= link_to item.name, item_path(item) %></p>
-               <p><%= number_to_currency item.current_price %></p></td>
-          <% if logged_in? %>
-            <% if current_user.role == "manager" || current_user.role == "admin" %>
-              <td><%= item.inventory_level %></td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-
-
-
-
-
-
-
-  <table class="table table-striped">
-    <thead>
+      <% if logged_in? %>
       <tr>
-        <th width="300">Name</th>
-        <th width="100">Price</th>
-        <% if logged_in? %>
           <% if current_user.role == "manager" || current_user.role == "admin" %>
           <th width="100">Inventory</th>
           <% end %>
+      </tr>
+      <% end %>
+
+      <tr>
+      <% count = 0 %>
+        <% items.each do |item| %>
+          <% count += 1 %>
+          <td> <p><%#= link_to image_tag(item.picture), item_path(item) %>
+                  <img src="assets/board.jpg" alt="img pic" id="item_pic"/>
+          </p> 
+               <div id="item_description"><p><%= link_to item.name, item_path(item) %></p>
+               <p id="price"><%= number_to_currency item.current_price %></p></div></td>
+          <% if count % 3 == 0 %>
+            <% count = 0 %>
+            <tr> </tr>
+          <% end %>
+
+
+            <% if logged_in? %>
+              <% if current_user.role == "manager" || current_user.role == "admin" %>
+                <td><%= item.inventory_level %>
+            </td>
+              <% end %>
+            <% end %>
+          
         <% end %>
       </tr>
-    </thead>
-    <tbody>
-      <% items.each do |item| %>
-        <tr>
-          <td><%= link_to item.name, item_path(item) %></td>
-          <td><%= number_to_currency item.current_price %></td>
-          <% if logged_in? %>
-            <% if current_user.role == "manager" || current_user.role == "admin" %>
-              <td><%= item.inventory_level %></td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
     </tbody>
   </table>
 <% end %>

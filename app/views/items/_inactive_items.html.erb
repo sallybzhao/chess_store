@@ -1,4 +1,3 @@
-<% if logged_in? && current_user.role != "customer" %>
   <% unless @inactive_items.empty? %>
     <div class="panel clearfix">
       <h3>Inactive Items</h3>
@@ -9,4 +8,3 @@
       </ul>
     </div>
   <% end %>
-<% end %>

@@ -1,17 +1,13 @@
-<%= stylesheet_link_tag    "general" %>
 <div class="contain-to-grid" >
   <nav class="top-bar" data-topbar role="navigation"> 
     <section class="top-bar-section" id="navbar">
-      <ul class="left">
+      <ul >
         <!-- link to home -->
-
-        <li><img src="assets/logo.png" alt="logo" id="logo"/><li>
-        <li><%= link_to "HOME", home_path %></li>
+        <!-- <li><img src="assets/logo.png" alt="logo" id="logo"/><li> -->
+        <li><%= link_to image_tag("logo.png"), home_path, id: "logo" %></li>
 
         <!-- options for items -->
-        
-          
-
+        <span id="links">
         <% if logged_in? %>
           <% if current_user.role != "shipper" && current_user.role != "customer" %>
             <li class="has-dropdown">
@@ -64,14 +60,14 @@
 
         <!-- content once logged in goes here -->
         <% if logged_in? %>
-          <li><%= link_to 'Logout', logout_path %></li>
+          <li><%= link_to 'LOGOUT', logout_path %></li>
           <%#= current_user.proper_name %><%#= current_user.role %>
         <% else %>
-          <li><%= link_to 'Login', login_path %></li>
-          <li><%= link_to 'Sign Up', new_user_path %></li>
+          <li><%= link_to 'LOGIN', login_path %></li>
+          <li><%= link_to 'SIGN UP', new_user_path %></li>
         <% end %>
 
-        
+      </span><!-- links -->
       </ul>
     </section>
   </nav>

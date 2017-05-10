@@ -1,4 +1,13 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "item", 
+<%= stylesheet_link_tag    "item" %>
+<%#= render partial: "partials/index_structure", locals: {model_name: "item", 
                                                          primary: "active_items", 
                                                          secondary: nil,
                                                          sidebar: "inactive_items"} %>
+<div id="main_div">
+<%= render partial: "active_items" %>
+
+<% if logged_in? && current_user.role != "customer" %>
+    <%= render partial: "active_items" %>
+<% end %>
+
+</div>
