@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
 
   include ChessStoreHelpers::Cart
-
+  
   def new
+    render :layout => false
   end
   
   def create

@@ -20,7 +20,7 @@
             <td><%= order_item.item_id %></td>
             <td><%= order_item.quantity %></td>
             <td><%= order_item.shipped_on %></td>
-            <td> <%= link_to(ship_path(order_item), class: 'button tiny radius', id: 'ship_item_link', remote: true) do %> Ship <% end %> </td>
+            <td> <%= link_to(ship_path(order_item), class: 'button tiny radius', id: 'ship_link', remote: true, method: 'patch') do %> Ship <% end %> </td>
           </tr>
         <% end %> 
       <% end %>
