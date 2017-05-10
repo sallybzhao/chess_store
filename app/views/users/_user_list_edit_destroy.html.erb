@@ -1,8 +1,10 @@
 <div class="form-actions">
+<% if @user.role == "manager" || @user.role == "admin" %>
   <%= link_to(users_path, class: 'button radius') do %>
     <i class="fa fa-list"></i>
     &nbsp;Display All Users
   <% end %>
+<% end %>
   &nbsp;&nbsp;
 
   <% if current_user.role == "manager" %>

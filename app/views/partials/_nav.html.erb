@@ -36,20 +36,23 @@
             </li>
           <% end %>
 
+          <% if current_user.role != "shipper" %>
           <li>
             <%= link_to "SCHOOLS", schools_path %>
           </li>
+          <% end %>
 
           <% if current_user.role == "manager" || current_user.role == "admin" %>
             <li><%= link_to "USERS", users_path %></li>
             <li><%= link_to "ORDERS", orders_path %></li>
           <% end %>
 
-          <li class="has-dropdown">
-            <%= link_to "My Account", user_path(current_user) %>
+          <li class="has-dropdown right">
+            <%= link_to "MY ACCOUNT", user_path(current_user) %>
             <ul class="dropdown">
-              <li><%= link_to "My Orders", orders_path %></li>
+              <!-- <li><%#= link_to "My Orders", orders_path %></li> -->
               <li><%= link_to "My Cart", index_path %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
             </ul>
           </li>
 
@@ -59,11 +62,8 @@
         <% end %>
 
         <!-- content once logged in goes here -->
-        <% if logged_in? %>
-          <li class="right"><%= link_to 'LOGOUT', logout_path %></li>
-          <%#= current_user.proper_name %><%#= current_user.role %>
-        <% else %>
-          <li class="right"><%= link_to 'LOGIN', login_path %></li>
+        <% if !logged_in? %>
+          <li class="right"><%= link_to 'LOGIN', root_path %></li>
           <li class="right"><%= link_to 'SIGN UP', new_user_path %></li>
         <% end %>
 

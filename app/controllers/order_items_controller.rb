@@ -7,7 +7,7 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if @order_item.save
         format.html { redirect_to @home, notice: 'Order was successfully shipped.' }
-        @not_shipped = Order.not_shipped.chronological.to_a
+        @not_shipped = OrderItem.unshipped
         format.js
       else
         format.html { render action: 'home' }

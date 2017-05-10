@@ -1,5 +1,8 @@
 <% if @my_orders.nil? || @my_orders.empty? %>
-  <h4>No orders at this time.</h4>
+  <h4>YOU HAVE NO ORDERS</h4> <hr />
+  <%= link_to(items_path, class: 'button radius') do %>
+    SHOP NOW
+  <% end %>
 <% else %>
   <h4>Orders</h4>
   <table class="table table-striped">

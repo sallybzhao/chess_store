@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   
   def home
     @items_to_reorder = Item.need_reorder.alphabetical.to_a
-    @not_shipped = Order.not_shipped.chronological.to_a
+    @not_shipped = OrderItem.unshipped
 
     if logged_in?
       @my_orders = current_user.orders.chronological.to_a

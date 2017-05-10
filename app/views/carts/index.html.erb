@@ -1,4 +1,5 @@
 <% unless @cart_items.nil? || @cart_items.empty? %>
+  <h3 id="center_heading"> My Cart </h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -31,5 +32,8 @@
   <% end %>
 
 <% else %>
-    No items in the cart
+    <p> NO ITEMS IN THE CART </p>
+    <%= link_to(items_path, class: 'button radius') do %>
+    SHOP NOW
+  <% end %>
 <% end %>

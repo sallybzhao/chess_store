@@ -14,6 +14,8 @@
   <b>Username</b>: <%= @user.username %>
 </p>
 
-<p>
-  <b>Role</b>: <%= @user.role.capitalize %>
-</p>
+<% if current_user.role == "admin" %>
+    <p>
+      <b>Role</b>: <%= @user.role.capitalize %>
+    </p>
+<% end %>

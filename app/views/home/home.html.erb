@@ -4,8 +4,11 @@
   <% end %>
   <% if current_user.role == "manager" || current_user.role == "shipper" %> 
     <%= render :partial => 'not_shipped' %>
+    <%#= render :partial => 'not_shipped' %>
   <% end %>
-  <%= render :partial => 'orders/my_orders' %>
+  <% if current_user.role == "customer" %>
+    <%= render :partial => 'orders/my_orders' %>
+  <% end %>
 <% else %>
   <% render :partial => 'general_home' %>
 <% end %>

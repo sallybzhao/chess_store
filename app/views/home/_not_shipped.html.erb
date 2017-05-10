@@ -1,28 +1,27 @@
 <div id="not_shipped_table">
-<h5>Not Shipped</h5>
+<h5 id="center_heading">NOT SHIPPED</h5>
+<hr/> <br />
 
 <% unless @not_shipped.nil? || @not_shipped.empty? %>
-  <table class="table table-striped">
+  <table style="margin: 0px auto;" class="table table-striped">
     <thead>
       <tr>
-        <th width="150">Order ID</th>
-        <th width="150">Item ID</th>
-        <th width="150">Quantity</th>
+        <th width="90">Order ID</th>
+        <th width="150">Item Name</th>
+        <th width="75">Quantity</th>
         <th width="150">Shipped On</th>
         <th> Ship </th>
       </tr>
     </thead>
     <tbody>
-      <% @not_shipped.each do |order| %>
-        <% order.order_items.each do |order_item| %>
+      <% @not_shipped.each do |order_item| %>
           <tr>
-            <td><%= link_to order_item.order.id, order_path(order), id: "order_id" %></td>
-            <td><%= order_item.item_id %></td>
+            <td class="gold"><%= link_to order_item.order.id, order_path(order_item.order), id: "order_id" %></td>
+            <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
             <td><%= order_item.quantity %></td>
             <td><%= order_item.shipped_on %></td>
             <td> <%= link_to(ship_path(order_item), class: 'button tiny radius', id: 'ship_link', remote: true, method: 'patch') do %> Ship <% end %> </td>
           </tr>
-        <% end %> 
       <% end %>
     </tbody>
   </table>
@@ -30,6 +29,7 @@
   <p>There are no items that need to be reorder at this time.</p>
 <% end %>
 </div>
+<br/><br/>
 
 
 
