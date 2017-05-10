@@ -14,22 +14,28 @@
         <%= form_tag sessions_path do %>
           <div class="control-group">
             <%#= label_tag :email %>
-            <div class="controls">
+            <div class="controls ">
               <%= text_field_tag :email, params[:email], placeholder: 'Email'%>
             </div>
           </div>
-          <br />
           <div class="control-group">
             <%#= label_tag :password %>
-            <div class="controls">
+            <div class="controls textbox">
               <%= password_field_tag(:password, "", placeholder: "Password") %>
             </div>
           </div>
           
-          <div class="actions"><%#= submit_tag "Log In" %></div>
+          <div class="actions" id="login_button"><%#= submit_tag "Log In" %>
           <!-- <div class="actions"><input type="submit" value="Log in"> </div> -->
           <button type="submit"> <img src="assets/login.png" alt="login button" /> </button> 
           <p> Log in </p>
+          </div>
+
+          <div class="actions" id="guest_button">
+          <%= link_to image_tag("guest.png"), items_path %>
+          <p> Guest </p>
+          </div>
+
         <% end %>
       </div>
     </div>

@@ -86,7 +86,6 @@ class Ability
       can :create, School
 
     else
-      # guests can only read domains covered (plus home pages)
       can :read, Item
       can :create, User
       can :create, School
