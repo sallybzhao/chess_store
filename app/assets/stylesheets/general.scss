@@ -29,6 +29,21 @@ nav {
     margin-left: 10px;
 }
 
+#guest_home {
+    min-width: 100%;
+}
+
+#explore {
+    position: absolute;
+    border: 1px solid #bb892a;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(242, 242, 242, 0.4);
+    top: 52%;
+    margin-left: 42%;
+    font-size: 125%;
+}
+
 #center_heading {
     margin-left: 43%;
 }
@@ -92,7 +107,7 @@ footer, .push {
 
 #footer-links {
     padding-top: 10px;
-    margin-left: 30%;
+    margin-left: 34%;
     color: #4d4d4d;
 }
 
