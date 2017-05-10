@@ -115,6 +115,13 @@ class UserTest < ActiveSupport::TestCase
       assert_equal "4122688211", @mark.phone
     end
 
+    should "have working self.authenticate method" do
+      User.delete_all
+      user = FactoryGirl.build(:user, email: 'foo@bar.com', password: 'secret')
+      user.save!
+      assert_equal user, User.authenticate('foo@bar.com', 'secret')
+    end
+
     should "shows that a user cannot be destroyed" do
       assert @mark.active
       deny @mark.destroy
