@@ -3,7 +3,6 @@ class OrderItemsController < ApplicationController
   def ship
     @order_item = OrderItem.find(params[:id])
     @order_item.update_attributes(:shipped_on => Date.today)
-    #@order_item.save
 
     respond_to do |format|
       if @order_item.save

@@ -60,11 +60,11 @@
 
         <!-- content once logged in goes here -->
         <% if logged_in? %>
-          <li><%= link_to 'LOGOUT', logout_path %></li>
+          <li class="right"><%= link_to 'LOGOUT', logout_path %></li>
           <%#= current_user.proper_name %><%#= current_user.role %>
         <% else %>
-          <li><%= link_to 'LOGIN', login_path %></li>
-          <li><%= link_to 'SIGN UP', new_user_path %></li>
+          <li class="right"><%= link_to 'LOGIN', login_path %></li>
+          <li class="right"><%= link_to 'SIGN UP', new_user_path %></li>
         <% end %>
 
       </span><!-- links -->

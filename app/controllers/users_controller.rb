@@ -30,7 +30,6 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user), notice: "Thank you for signing up!"
       create_cart
     else
-      flash[:error] = "This user could not be created."
       render "new"
     end
   end

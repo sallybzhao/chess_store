@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
       redirect_to root_url
       create_cart
     else
-      flash.now.alert = "Email or password is invalid"
-      render "new"
+      @flash = "Email or password is invalid"
+      redirect_to root_url
     end
   end
   

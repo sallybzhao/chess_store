@@ -24,10 +24,54 @@ nav {
     margin-left: 10px;
 }
 
+#center_heading {
+    margin-left: 43%;
+}
+
 #main_div {
     margin-top: 40px;
 }
 
+.field input {
+  width: 200px;
+}
+
+#user_form {
+    width: 45%;
+    margin: 0% auto;
+}
+
+.juxtapose_l {
+    float: left;
+}
+
+.juxtapose_r {
+    float: right;
+}
+
+.button {
+    background-color: #000000;
+    width: 175px;
+    margin-top: 30px;
+}
+
 footer {
     background-color: #bb892a;
+    margin: 0px -0.7%;
 }
+
+#footer-links {
+    padding-top: 10px;
+    margin-left: 30%;
+    color: #4d4d4d;
+}
+
+#signature {
+    margin-left: 40%;
+}
+
+
+
+
+
+

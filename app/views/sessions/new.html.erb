@@ -11,6 +11,9 @@
     <div class="row">
       <div class="small-7 columns" id="login_box">
         <h2 id="heading">Log In</h2>
+        <% if !@flash.nil? %>
+          <%= @flash %>
+        <% end %>
         <%= form_tag sessions_path do %>
           <div class="control-group">
             <%#= label_tag :email %>
