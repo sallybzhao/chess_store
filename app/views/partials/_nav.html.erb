@@ -13,7 +13,6 @@
             <li class="has-dropdown">
               <%= link_to "ITEMS", items_path %>
               <ul class="dropdown">
-                <li><%= link_to "Reorder List", home_path %></li>
                 <li><%= link_to "Add an Item", new_item_path %></li>
               </ul>
             </li>
@@ -48,7 +47,7 @@
           <% end %>
 
           <li class="has-dropdown right">
-            <%= link_to "MY ACCOUNT", user_path(current_user) %>
+            <%= link_to current_user.first_name.upcase, user_path(current_user) %>
             <ul class="dropdown">
               <!-- <li><%#= link_to "My Orders", orders_path %></li> -->
               <li><%= link_to "My Cart", index_path %></li>

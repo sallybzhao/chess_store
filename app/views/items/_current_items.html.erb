@@ -4,14 +4,6 @@
   <table class="table">
     
     <tbody>
-      <% if logged_in? %>
-      <tr>
-          <% if current_user.role == "manager" || current_user.role == "admin" %>
-          <th width="100">Inventory</th>
-          <% end %>
-      </tr>
-      <% end %>
-
       <tr>
       <% count = 0 %>
         <% items.each do |item| %>
@@ -20,20 +12,17 @@
                   <img src="assets/board.jpg" alt="img pic" id="item_pic"/>
           </p> 
                <div id="item_description"><p><%= link_to item.name, item_path(item) %></p>
-               <p id="price"><%= number_to_currency item.current_price %></p></div></td>
+               <p class="price"><%= number_to_currency item.current_price %></p>
+               <% if logged_in? %>
+                  <% if current_user.role == "manager" || current_user.role == "admin" %>
+                    <p class="price"> Inventory: <%= item.inventory_level %> </p>
+                  <% end %>
+                <% end %>
+               </div></td>
           <% if count % 3 == 0 %>
             <% count = 0 %>
             <tr> </tr>
-          <% end %>
-
-
-            <% if logged_in? %>
-              <% if current_user.role == "manager" || current_user.role == "admin" %>
-                <td><%= item.inventory_level %>
-            </td>
-              <% end %>
-            <% end %>
-          
+          <% end %> 
         <% end %>
       </tr>
     </tbody>

@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 nav {
     height: 72px;
     width: 100%;
@@ -29,15 +34,16 @@ nav {
 }
 
 #main_div {
+    min-height: 100%;
     margin-top: 40px;
-    margin-bottom: -20px;
+    margin-bottom: -50px;
 }
 
 .field input {
   width: 200px;
 }
 
-#user_form {
+#form {
     width: 45%;
     margin: 0% auto;
 }

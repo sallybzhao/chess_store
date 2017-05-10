@@ -1,7 +1,7 @@
-<h5>Reorder List</h5>
+<h3 id="center_heading">REORDER LIST</h5> <hr /> <br />
 
 <% unless @items_to_reorder.nil? || @items_to_reorder.empty? %>
-  <table class="table table-striped">
+  <table style="margin: 0px auto;" class="table table-striped">
     <thead>
       <tr>
         <th width="250">Name</th>
@@ -12,7 +12,7 @@
     <tbody>
       <% @items_to_reorder.each do |item| %>
         <tr>
-          <td><%= link_to item.name, item_path(item) %></td>
+          <td><%= link_to item.name, item_path(item), {:style=>'color: #bb892a;'} %></td>
           <td><%= item.inventory_level %></td>
           <td><%= item.reorder_level %></td>
         </tr>

@@ -23,9 +23,5 @@ class HomeController < ApplicationController
   def complete
     
   end
-
-  def login
-    
-  end
   
 end

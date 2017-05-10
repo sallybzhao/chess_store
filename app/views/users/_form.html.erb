@@ -1,4 +1,4 @@
-<div id="user_form">
+<div id="form">
 <%= simple_form_for @user do |f| %>
     <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -24,17 +24,17 @@
       </p>
     </div>
 
-    <div>
-      <p>
+    <div style="width: 435px; margin: 0% auto; clear: both; ">
+      <p >
         <%#= f.label :email, "* Email Address" %> <br />
-        <%= f.text_field :phone, placeholder: 'Phone' %>
+        <%= f.text_field :email, placeholder: 'Email' %>
       </p>
     </div>
 
     <div class="field juxtapose_l">
       <p>
         <%#= f.label :email, "* Email Address" %> <br />
-        <%= f.text_field :email, placeholder: 'Email' %>
+        <%= f.text_field :phone, placeholder: 'Phone' %>
       </p>
     </div>
 

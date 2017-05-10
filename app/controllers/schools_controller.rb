@@ -23,7 +23,7 @@ class SchoolsController < ApplicationController
     @school = School.new(school_params)
     if @school.save
       session[:school_id] = @school.id
-      redirect_to home_path, notice: "Thank you for adding a school!"
+      redirect_to schools_path, notice: "Thank you for adding a school!"
     else
       flash[:error] = "This school could not be created."
       render "new"
