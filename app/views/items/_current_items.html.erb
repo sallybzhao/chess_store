@@ -8,9 +8,15 @@
       <% count = 0 %>
         <% items.each do |item| %>
           <% count += 1 %>
-          <td> <p><%#= link_to image_tag(item.picture), item_path(item) %>
-                  <img src="assets/board.jpg" alt="img pic" id="item_pic"/>
-          </p> 
+          <td>
+            <p>
+              <% case item_type 
+                   when "boards" %><img src="assets/board.jpg" alt="img pic" id="item_pic"/>
+                <% when "pieces" %><img src="assets/wooden-pieces.jpg" alt="img pic" id="item_pic"/>
+                <% when "clocks" %><img src="assets/analog.jpg" alt="img pic" id="item_pic"/>
+                <% when "supplies" %><img src="assets/scorebook.jpg" alt="img pic" id="item_pic"/>
+              <% end %>                 
+            </p> 
                <div id="item_description"><p><%= link_to item.name, item_path(item) %></p>
                <p class="price"><%= number_to_currency item.current_price %></p>
                <% if logged_in? %>
